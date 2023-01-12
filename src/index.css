@@ -1,0 +1,432 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Contrail+One&family=Mukta&family=Quicksand&display=swap');
+
+@layer base {
+  body {
+    @apply overflow-x-hidden
+  }
+  li {
+    @apply px-4;
+    @apply cursor-pointer;
+  }
+}
+@layer components {
+  .idNumber {
+    @apply rounded-lg border border-[#777877] px-1 m-1 text-xs bg-[#2b2a2a];
+  }
+
+  .paginationButton {
+    @apply rounded-lg  p-4 mx-2 bg-[#7c0e33] hover:bg-[#ffffff] hover:text-[#7c0e33] hover:border-[#7c0e33] duration-300 shadow-xl;
+  }
+
+  .inputBox {
+    @apply bg-[#842121] rounded-lg hover:border-[#eb5f08] focus:bg-[#ce5858] focus:border font-bold text-[#fff] p-1 outline-none text-center;
+  }
+
+  .inputLabel {
+    @apply font-bold font-[Quicksand] text-[#ebe8e8];
+  }
+
+  .inputContainer {
+    @apply flex flex-col rounded-xl shadow-sm p-2 shadow-[#fb6262];
+  }
+
+  .inputBorder {
+    @apply border-b-2 border-red-500 rounded-lg p-2;
+  }
+
+  
+  .tableBorder {
+    @apply rounded-lg p-2;
+    box-shadow: 0px 3px 3px 0px rgba(194, 0, 172, 0.75);
+  }
+}
+
+.shadowCircle{
+  box-shadow: 0px 0px 8px 6px rgba(253, 228, 4, 0.75);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0px 0px 9px 6px rgba(231, 248, 48, 0.938);
+
+  }
+  70% {
+    box-shadow: 0px 0px 10px 7px rgba(231, 248, 48, 0.938);
+
+  }
+  70% {
+    box-shadow: 0px 0px 11px 8px rgba(231, 248, 48, 0.938);
+
+  }
+  100% {
+    box-shadow: 0px 0px 12px 9px rgba(231, 248, 48, 0.938);
+
+  }
+}
+.mining-pickaxe {
+  animation: mining 1.6s infinite cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  opacity: 1;
+  transform-origin: 15% 80%;
+}
+@keyframes mining {
+  0% {
+    transform: rotateZ(-30deg);
+  }
+  50% {
+    transform: rotateZ(25deg);
+  }
+  100% {
+    transform: rotateZ(-10deg);
+  }
+}
+.mining-chunks {
+  animation: mining-chunks 1.6s infinite ease-in;
+  opacity: 0;
+}
+@keyframes mining-chunks {
+  0% {
+    opacity: 0;
+  }
+  49% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.pictureShadow{
+  filter: drop-shadow(1px 1px 2px rgb(59, 59, 57));
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.backgroundNone{
+  background: none !important;
+}
+
+.rock {
+  background: rgb(51, 51, 51);
+  background: linear-gradient(
+    180deg,
+    rgba(51, 51, 51, 1) 9%,
+    rgba(84, 84, 84, 1) 44%,
+    rgb(156, 156, 156) 71%,
+    rgb(86, 85, 86) 91%
+  );
+  color: rgb(232, 185, 185);
+}
+.ghost {
+  background: rgb(129, 3, 125);
+  background: linear-gradient(
+    180deg,
+    rgb(122, 5, 118) 9%,
+    rgb(149, 7, 137) 44%,
+    rgba(239, 4, 218, 1) 71%,
+    rgb(152, 5, 140) 91%
+  );
+  color: #fa36ea;
+}
+
+.fighting {
+  background: rgb(119, 40, 2);
+  background: linear-gradient(
+    180deg,
+    rgba(119, 40, 2, 1) 9%,
+    rgb(171, 66, 14) 44%,
+    rgb(244, 99, 26) 71%,
+    rgb(174, 62, 5) 91%
+  );
+  color: #f98145;
+}
+
+.psychic {
+  background: rgb(123, 2, 43);
+  background: linear-gradient(
+    180deg,
+    rgb(113, 3, 40) 9%,
+    rgb(166, 2, 59) 44%,
+    rgb(248, 30, 106) 71%,
+    rgb(156, 2, 53) 91%
+  );
+  color: #f7256f;
+}
+.ground {
+  background: rgb(142, 113, 4);
+  background: linear-gradient(
+    180deg,
+    rgb(134, 106, 6) 9%,
+    rgb(148, 119, 2) 44%,
+    rgb(230, 181, 7) 71%,
+    rgb(151, 122, 3) 91%
+  );
+  color: #ddb62b;
+}
+
+.poison {
+  background: rgb(149, 54, 185);
+  background: linear-gradient(
+    180deg,
+    rgba(149, 54, 185, 1) 9%,
+    rgba(149, 66, 181, 1) 44%,
+    rgba(213, 144, 241, 1) 71%,
+    rgba(137, 75, 161, 1) 91%
+  );
+  color: #e0a7f6;
+}
+
+.fairy {
+  background: rgb(182, 135, 143);
+  background: linear-gradient(
+    180deg,
+    rgb(189, 143, 151) 9%,
+    rgb(189, 147, 154) 44%,
+    rgba(251, 212, 219, 1) 71%,
+    rgb(162, 120, 129) 91%
+  );
+  color: rgba(244, 145, 161, 0.863);
+}
+
+.fire {
+  background: rgb(93, 44, 31);
+  background: linear-gradient(
+    180deg,
+    rgb(72, 34, 24) 9%,
+    rgb(135, 57, 12) 44%,
+    rgb(219, 74, 22) 71%,
+    rgb(161, 30, 7) 91%
+  );
+  color: #ff7045;
+}
+
+.grass {
+  background: rgb(29, 64, 26);
+  background: linear-gradient(
+    180deg,
+    rgba(29, 64, 26, 1) 9%,
+    rgb(42, 108, 16) 44%,
+    rgb(50, 198, 39) 71%,
+    rgb(10, 94, 4) 91%
+  );
+  color: #14b60e;
+}
+.water {
+  background: rgb(28, 34, 42);
+  background: rgb(28, 34, 42);
+  background: linear-gradient(
+    180deg,
+    rgba(28, 34, 42, 1) 9%,
+    rgba(10, 50, 108, 1) 44%,
+    rgb(20, 127, 184) 71%,
+    rgb(7, 79, 131) 91%
+  );
+  color: #47c7f2;
+}
+.bug {
+  background: linear-gradient(
+    180deg,
+    rgb(78, 50, 4) 9%,
+    rgb(133, 90, 25) 44%,
+    rgb(215, 139, 24) 71%,
+    rgb(116, 75, 13) 91%
+  );
+  color: #eea12d;
+}
+.normal {
+  background: rgb(136, 135, 135);
+  background: linear-gradient(
+    180deg,
+    rgb(125, 125, 125) 9%,
+    rgb(166, 164, 164) 44%,
+    rgb(255, 255, 255) 71%,
+    rgb(135, 134, 134) 91%
+  );
+  color: #f9f6f6;
+}
+
+.electric {
+  background: rgb(150, 134, 28);
+  background: linear-gradient(
+    180deg,
+    rgb(186, 159, 4) 9%,
+    rgb(198, 169, 2) 44%,
+    rgb(249, 241, 13) 71%,
+    rgb(145, 145, 2) 91%
+  );
+  color: rgb(255, 255, 161);
+}
+
+.ice {
+  background: rgb(81, 185, 195);
+  background: linear-gradient(
+    180deg,
+    rgb(59, 147, 155) 9%,
+    rgb(62, 181, 192) 44%,
+    rgba(114, 243, 255, 1) 71%,
+    rgb(63, 166, 175) 91%
+  );
+  color: #b1f5f6;
+}
+.dragon {
+  background: rgb(137, 10, 235);
+  background: linear-gradient(
+    180deg,
+    rgba(137, 10, 235, 1) 9%,
+    rgb(135, 82, 184) 44%,
+    rgb(215, 125, 229) 71%,
+    rgb(140, 71, 170) 91%
+  );
+  color: #e7bfed;
+}
+
+.dark {
+  background: rgb(30, 29, 30);
+  background: linear-gradient(
+    180deg,
+    rgba(30, 29, 30, 1) 9%,
+    rgba(58, 58, 58, 1) 44%,
+    rgba(102, 102, 102, 1) 71%,
+    rgb(54, 54, 54) 91%
+  );
+  color: #838383;
+}
+
+.steel {
+  background: rgb(77, 66, 66);
+  background: linear-gradient(
+    180deg,
+    rgba(77, 66, 66, 1) 9%,
+    rgba(100, 88, 88, 1) 44%,
+    rgba(160, 144, 144, 1) 71%,
+    rgb(96, 85, 85) 91%
+  );
+  color: #c6b6b6;
+}
+
+.textStroke {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+.backgroundDawn {
+  background-image: url("./assets//pokemonbackground2.jpg");
+  background-position: center;
+}
+
+.stakingBackground{
+  background-image: url("./assets//stakingbackground.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+
+@keyframes spin {
+  0% {
+    border-left-width: 0;
+    border-right-width: 0;
+    width: 50vmin;
+  }
+  50% {
+    border-left-width: 5vmin;
+    border-right-width: 0;
+    width: 0;
+  }
+  50.001% {
+    border-left-width:0;
+    border-right-width:5vmin;
+  }
+  100% {
+    border-left-width: 0;
+    border-right-width: 0;
+    width: 50vmin;
+  }
+}
+
+
+/* cardflip */
+
+.mainContainerFlip {
+  position: relative;
+}
+.cardFlip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+
+.cardFlip:hover {
+  transform: rotateY(180deg);
+}
+
+.cardFront {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+.cardBack {
+  top: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+
+.typeBackground {
+  background-color: rgba(75, 75, 75, 0.231);
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding: 3px;
+}
+
+.connectButton {
+  border: 2px solid rgb(205, 216, 218);
+  border-radius: 10px;
+  margin: 4px;
+  background-color: #8b2525;
+  font-size: 15px;
+}
+
+.connectButton:hover {
+  background-color: rgb(187, 13, 83);
+  border: 2px solid #8b2525;
+  transition: 0.5s;
+}
+
+.gradiantBackground {
+  background: linear-gradient(
+    180deg,
+    rgb(68, 23, 132) 9%,
+    rgb(47, 25, 101) 44%,
+    rgb(38, 14, 100) 71%,
+    rgb(50, 23, 117) 91%
+  );
+}
+
+.gradiantBackground2 {
+  background: rgb(63, 66, 75);
+  background: linear-gradient(
+    0deg,
+    rgb(34, 48, 90) 0%,
+    rgba(38, 36, 82, 1) 42%,
+    rgba(20, 33, 114, 1) 100%
+  );
+}
