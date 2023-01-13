@@ -7,7 +7,7 @@ const Search = () => {
 
   return (
     <div className="ml-5 w-full text-white flex items-center ">
-      <div className="rounded-full  flex border bg-[#ff1a1a] pl-2  flex-between">
+      <div className="rounded-full  flex border bg-[#ff1a1a] pl-2  flex-between " >
         <GiArchiveResearch className="w-[40px] h-[40px] rounded-full cursor-pointer mr-1 "/>
         <input
           type="text"

@@ -5,10 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import PokeDex from "./pages/PokeDex.js";
 import Staking from "./pages/Staking";
-import { useState } from "react";
 
 function App() {
-  const [address, setAddress] = useState();
   function getLibrary(provider) {
     const library = new ethers.providers.Web3Provider(provider);
     library.pollingInterval = 8000; // frequency provider is polling

@@ -3,7 +3,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { injected } from "../utils/connectors";
 import { useWeb3React } from "@web3-react/core";
 import { Link } from "react-router-dom";
-import { ethers } from "ethers";
+import { CgPokemon } from "react-icons/cg";
 
 const NavBar = () => {
   const [nav, setNav] = useState(false);
@@ -12,6 +12,11 @@ const NavBar = () => {
   const { activate, deactivate, account } = useWeb3React();
 
   const connect = async () => {
+    if (typeof window.ethereum == "undefined") {
+      alert(
+        "No Metamask installed. Please install metamask first as your browser extension. -Zeff"
+      );
+    }
     try {
       await activate(injected);
     } catch (error) {
@@ -48,9 +53,9 @@ const NavBar = () => {
         </div>
       </div>
 
-      {/* MENU */}
+      {/* MENU DESKTOP VIEW */}
       <ul className="hidden md:flex p-5 h-full">
-        <li className="font-bold text-lg  border-2 rounded-full mr-2 hover:bg-[#f2f2f2] hover:text-customize-redbackground hover:border-black py-1 duration-300">
+        <li className="font-bold text-lg  border-2 rounded-full mr-2 hover:bg-[#f2f2f2] hover:text-customize-red background hover:border-black py-1 duration-300">
           <Link to="/">PokeDex</Link>
         </li>
         <li className="font-bold hover:border-b-2  mr-2">
@@ -60,7 +65,30 @@ const NavBar = () => {
         <li className="font-bold hover:border-b-2 ">Contact us</li>
       </ul>
 
-      {/* //HAMBURGER */}
+      {/* WALLET CONNECT MOBILE VIEW */}
+      <div className="flex md:hidden p-1">
+        <div className="flex flex-col">
+          <div className="flex">
+            {!account ? (
+              <button
+                onClick={connect}
+                className="w-[130px] h-[50px] text-sm connectButton"
+              >
+                Connect to Metamask
+              </button>
+            ) : (
+              <button
+                onClick={disconnect}
+                className="w-[130px] h-[50px]connectButton border-2 rounded-md p-2 hover:bg-[rgb(187, 13, 83)] transition-all"
+              >
+                Disconnect
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* //HAMBURGER  MOBILE VIEW*/}
       <div onClick={handleClick} className="md:hidden z-10 px-4 ">
         {!nav ? (
           <FaBars className="w-[30px] h-[30px]" />
@@ -69,7 +97,44 @@ const NavBar = () => {
         )}
       </div>
 
-      {/* WALLET CONNECT */}
+      {nav && (
+        <ul className="flex md:hidden p-5 h-full w-full absolute z-50 bg-customize-redbackground top-[10%] flex-col border-t border-black">
+          <li
+            onClick={handleClick}
+            className="font-bold text-xl p-8  focus:scale-75 border-b "
+          >
+            <Link to="/" className="flex items-center">
+              <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
+              PokeDex
+            </Link>
+          </li>
+          <li
+            onClick={handleClick}
+            className="font-bold text-xl p-8  focus:scale-75 border-b "
+          >
+            <Link to="/staking" className="flex items-center">
+              <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
+              Stake
+            </Link>
+          </li>
+          <li
+            onClick={handleClick}
+            className="font-bold text-xl p-8  focus:scale-75 flex items-center border-b"
+          >
+            <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
+            Inventory
+          </li>
+          <li
+            onClick={handleClick}
+            className="font-bold text-xl p-8  focus:scale-75 flex items-center border-b"
+          >
+            <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
+            Contact us
+          </li>
+        </ul>
+      )}
+
+      {/* WALLET CONNECT DESKTOP VIEW*/}
       <div className="hidden md:flex p-1">
         <div className="flex flex-col">
           <div className="flex">
@@ -81,7 +146,10 @@ const NavBar = () => {
                 Connect to Metamask
               </button>
             ) : (
-              <button onClick={disconnect} className="w-[130px] h-[50px]connectButton border-2 rounded-md p-2 hover:bg-[rgb(187, 13, 83)] transition-all">
+              <button
+                onClick={disconnect}
+                className="w-[130px] h-[50px]connectButton border-2 rounded-md p-2 hover:bg-[rgb(187, 13, 83)] transition-all"
+              >
                 Disconnect
               </button>
             )}

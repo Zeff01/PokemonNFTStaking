@@ -90,14 +90,19 @@ const PokeDex = () => {
   if (loading) return "Loading...";
 
   return (
-    <div className="w-full h-full p-2 backgroundDawn bg-no-repeat bg-cover ">
-      <div className="flex">
-        <Search />
+    <div className="w-full h-full backgroundDawn bg-no-repeat bg-cover ">
+    <div  className="flex md:hidden p-2">
         <Account fontColor={"white"} />
+        </div>
+      <div className="flex p-4">
+        <Search  />
+        <div  className="hidden md:flex">
+        <Account fontColor={"white"} />
+        </div>
+   
       </div>
       <div className="grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-5 gap-2 font-bold ">
         {allPokemons.map((pokemon, num) => {
-
           return (
             <div key={num}>
               <Card
