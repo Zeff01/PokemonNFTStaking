@@ -2,13 +2,12 @@ import useWeb3Action from "./useWeb3Action";
 import web3 from "../web3/web3";
 import NFTPokemon from "../web3/NFTPokemon/Pokemon";
 import ethPokemon from "../web3/NFTPokemon/ethPokemon";
-import { useState, useEffect } from "react";
-import { useWeb3React } from "@web3-react/core";
+import { useState } from "react";
+
 
 export default function usePokemon(account) {
 
-  // const { active, library, account, chainId, connector, activate, deactivate } =
-  // useWeb3React();
+  let ethPokemonNFT = ethPokemon()
 
   const [zcurrentSupply, setzCurrentSupply] = useState();
   const [zbalanceOf, setzBalanceOf] = useState();
@@ -26,12 +25,8 @@ export default function usePokemon(account) {
     transactionHash,
   } = useWeb3Action(web3, NFTPokemon);
 
-  // async function currentSupply(account) {
-  //   setzCurrentSupply(await call(account, { name: "currentSupply" }, []));
-  // }
-
   async function currentSupply() {
-    const balance = await ethPokemon
+    const balance = await ethPokemonNFT
       .currentSupply()
       .then((data) => data.toNumber());
 
@@ -39,14 +34,14 @@ export default function usePokemon(account) {
   }
 
   async function safeMint() {
-    const safeMint = await ethPokemon.safeMint();
+    const safeMint = await ethPokemonNFT.safeMint();
 
     return safeMint;
 
   }
 
   async function approve( contractAddress, tokenId) {
-    const approve = await ethPokemon.approve(contractAddress, tokenId)
+    const approve = await ethPokemonNFT.approve(contractAddress, tokenId)
 
     return approve
 
@@ -70,7 +65,7 @@ export default function usePokemon(account) {
   }
 
   async function getOwnedTokens() {
-    const tokenUri = await ethPokemon.getTokens()
+    const tokenUri = await ethPokemonNFT.getTokens()
     setzGetOwnedTokens(tokenUri);
 
     return tokenUri

@@ -1,15 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 
 import useWeb3Action from "./useWeb3Action";
 import web3 from "../web3/web3";
 import NFTStaker from "../web3/NFTStaker/NFTStaker";
 import ethNFTStaker from "../web3/NFTStaker/ethNFTStaker";
-import { useWeb3React } from "@web3-react/core";
 
 export default function useFunction(account) {
-  // const { active, library, account, chainId, connector, activate, deactivate } =
-  // useWeb3React();
+  let ethNFT = ethNFTStaker();
 
   const [zcontractAddress, setzContractAddress] = useState("");
   const [zviewRewards, setzViewRewards] = useState();
@@ -29,11 +27,11 @@ export default function useFunction(account) {
 
   //CALL FUNCTIONS
   async function getContractAddress() {
-    setzContractAddress(await ethNFTStaker.getContractAddress());
+    setzContractAddress(await ethNFT.getContractAddress());
   }
 
   async function getAddressBalance() {
-    await ethNFTStaker.getAddressBalance();
+    await ethNFT.getAddressBalance();
   }
 
   //ONLY OWNER FUNCTIONS
@@ -48,26 +46,26 @@ export default function useFunction(account) {
   }
 
   async function stake(tokenId) {
-    const stake = await ethNFTStaker.stake(tokenId);
+    const stake = await ethNFT.stake(tokenId);
 
     return stake;
   }
 
   async function unStake(tokenId) {
-    const unStake = await ethNFTStaker.unStake(tokenId);
+    const unStake = await ethNFT.unStake(tokenId);
 
     return unStake;
   }
   async function claimRewards() {
-    await ethNFTStaker.claimRewards();
+    await ethNFT.claimRewards();
   }
 
   async function clearRewards() {
-    await ethNFTStaker.clearRewards();
+    await ethNFT.clearRewards();
   }
 
   async function viewRewards(account) {
-    let rewards = await ethNFTStaker.viewRewards(account);
+    let rewards = await ethNFT.viewRewards(account);
     let numberConversion = rewards.toNumber();
 
     rewards.toNumber();
@@ -79,7 +77,7 @@ export default function useFunction(account) {
   }
 
   async function getStakedTokens(account) {
-    const stakedTokens = await ethNFTStaker.getStakedTokens(account);
+    const stakedTokens = await ethNFT.getStakedTokens(account);
 
     setzGetStakedTokens(stakedTokens);
     return stakedTokens;
