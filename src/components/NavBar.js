@@ -98,48 +98,51 @@ const NavBar = () => {
       </div>
 
       {nav && (
-        <div className="flex md:hidden p-5 h-full w-full absolute  bottom-0 z-50 bg-customize-redbackground  flex-col border-t border-black border">
-          <div onClick={handleClick} className="md:hidden z-10 px-4flex-end flex justify-end mt-2 p-0 pr-0 mr-0">
+        <div className="flex md:hidden p-5 top-0 w-full absolute bottom-0 z-50  flex-col border-t border-black bg-customize-redbackground  h-[550px]">
+          <div
+            onClick={handleClick}
+            className="md:hidden z-10 px-4 flex-end flex justify-end mt-2 p-0 pr-0 mr-0 "
+          >
             {!nav ? (
               <FaBars className="w-[30px] h-[30px]" />
             ) : (
               <FaTimes className="w-[30px] h-[30px]" />
             )}
           </div>
-        <ul >
-          <li
-            onClick={handleClick}
-            className="font-bold text-xl p-8  focus:scale-75 border-b "
-          >
-            <Link to="/" className="flex items-center">
+          <ul>
+            <li
+              onClick={handleClick}
+              className="font-bold text-xl p-8  focus:scale-75 border-b "
+            >
+              <Link to="/" className="flex items-center">
+                <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
+                PokeDex
+              </Link>
+            </li>
+            <li
+              onClick={handleClick}
+              className="font-bold text-xl p-8  focus:scale-75 border-b "
+            >
+              <Link to="/staking" className="flex items-center">
+                <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
+                Stake
+              </Link>
+            </li>
+            <li
+              onClick={handleClick}
+              className="font-bold text-xl p-8  focus:scale-75 flex items-center border-b"
+            >
               <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
-              PokeDex
-            </Link>
-          </li>
-          <li
-            onClick={handleClick}
-            className="font-bold text-xl p-8  focus:scale-75 border-b "
-          >
-            <Link to="/staking" className="flex items-center">
+              Inventory
+            </li>
+            <li
+              onClick={handleClick}
+              className="font-bold text-xl p-8  focus:scale-75 flex items-center border-b"
+            >
               <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
-              Stake
-            </Link>
-          </li>
-          <li
-            onClick={handleClick}
-            className="font-bold text-xl p-8  focus:scale-75 flex items-center border-b"
-          >
-            <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
-            Inventory
-          </li>
-          <li
-            onClick={handleClick}
-            className="font-bold text-xl p-8  focus:scale-75 flex items-center border-b"
-          >
-            <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
-            Contact us
-          </li>
-        </ul>
+              Contact us
+            </li>
+          </ul>
         </div>
       )}
 
