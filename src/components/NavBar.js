@@ -9,13 +9,13 @@ const NavBar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
 
-  const { activate, deactivate, account} = useWeb3React();
+  const { activate, deactivate, account } = useWeb3React();
 
   const connect = async () => {
     try {
-      await activate(injected)
+      await activate(injected);
     } catch (error) {
-      console.log('error', error)
+      console.log("error", error);
     }
 
     localStorage.setItem("isWalletConnected", true);
@@ -73,15 +73,18 @@ const NavBar = () => {
       <div className="hidden md:flex p-1">
         <div className="flex flex-col">
           <div className="flex">
-            <button
-              onClick={connect}
-              className="w-[130px] text-sm connectButton"
-            >
-              Connect to Metamask
-            </button>
-            <button onClick={disconnect} className="w-[130px] connectButton">
-              Disconnect
-            </button>
+            {!account ? (
+              <button
+                onClick={connect}
+                className="w-[130px] h-[50px] text-sm connectButton"
+              >
+                Connect to Metamask
+              </button>
+            ) : (
+              <button onClick={disconnect} className="w-[130px] h-[50px]connectButton border-2 rounded-md p-2 hover:bg-[rgb(187, 13, 83)] transition-all">
+                Disconnect
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -3,8 +3,13 @@ import web3 from "../web3/web3";
 import NFTPokemon from "../web3/NFTPokemon/Pokemon";
 import ethPokemon from "../web3/NFTPokemon/ethPokemon";
 import { useState, useEffect } from "react";
+import { useWeb3React } from "@web3-react/core";
 
 export default function usePokemon(account) {
+
+  // const { active, library, account, chainId, connector, activate, deactivate } =
+  // useWeb3React();
+
   const [zcurrentSupply, setzCurrentSupply] = useState();
   const [zbalanceOf, setzBalanceOf] = useState();
   const [ztokenUri, setzTokenUri] = useState();

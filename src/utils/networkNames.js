@@ -6,11 +6,11 @@ export default function networkIDNames(chainId) {
       return "Ropsten";
     case "4":
       return "Rinkeby";
+    case "5":
+      return "Goerli";
     case "42":
       return "Kovan";
     default:
       return "Unknown";
   }
 }
-
-

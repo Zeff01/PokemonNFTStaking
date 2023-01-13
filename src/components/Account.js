@@ -3,7 +3,7 @@ import { useWeb3React } from "@web3-react/core";
 import networkIDNames from "../utils/networkNames";
 import { toHex, truncateAddress } from "../utils/utils";
 
-const Account = ({fontColor}) => {
+const Account = ({fontColor, }) => {
     const { active, account, library, chainId, connector, activate, deactivate } =
     useWeb3React();
   return (

@@ -29,9 +29,9 @@ const Staking = () => {
   const [unStakeValue, setUnStakeValue] = useState("");
   const [ethaccount, setEthAccount] = useState();
 
-  const { active, account, library, chainId, connector, activate, deactivate } =
+  const { active, library, account, chainId, connector, activate, deactivate } =
     useWeb3React();
-  
+
   const {
     getContractAddress,
     viewRewards,
@@ -65,7 +65,6 @@ const Staking = () => {
 
     //   POKEMON FUNCTION
     getOwnedTokens();
-
     if (account) {
       console.log("Account connected");
       //   NFTSTAKER FUNCTION
@@ -255,7 +254,7 @@ const Staking = () => {
                   <FaEthereum className="w-[20px] h-[20px] text-[#37b6ec] " />
                 </h1>
               </div>
-              <div className="mt-4 flex w-full ">
+              <div className="mt-6 flex w-full ">
                 <button
                   type="button"
                   className="text-white paginationButton "
@@ -379,23 +378,20 @@ const Staking = () => {
             </h2>
             <div className="flex w-full h-full justify-between p-2">
               <div className=" w-full p-4 flex flex-col justify-around ">
-                <div>
-                  <label className="inputLabel my-2 text-xl">
-                    Stake: &nbsp;
-                  </label>
-                </div>
-                <div className="w-full p-2">
+                <label className="inputLabel my-2 text-xl">Stake: &nbsp;</label>
+
+                <div className="w-full  flex flex-col ">
                   <input
                     type="number"
                     id="stake"
                     name="stake"
                     value={stakeValue}
                     onChange={(e) => setStakeValue(e.target.value)}
-                    className=" inputBox w-[50px] h-[50px] rounded-full text-center justify-center items-center mr-2"
+                    className=" inputBox w-[100px] h-[30px] rounded-md text-center justify-center items-center m-2 ml-0"
                   />
                   <button
                     type="button"
-                    className="text-white paginationButton w-[100px] h-[100px]"
+                    className="text-white bg-[#7c0e33] hover:bg-[#ffffff] hover:text-[#7c0e33] hover:border-[#7c0e33] duration-300 shadow-xl w-[100px] h-[50px] m-2 ml-0 rounded-md"
                     onClick={() => handleStake(stakeValue)}
                   >
                     Stake
@@ -403,23 +399,23 @@ const Staking = () => {
                 </div>
               </div>
 
-              <div className="borer w-full p-4 flex flex-col  justify-around">
+              <div className=" w-full p-4 flex flex-col justify-around">
                 <label className="inputLabel my-2 text-xl">
                   UnStake: &nbsp;
                 </label>
-                <div className="w-full p-2">
+                <div className="w-full  flex flex-col">
                   <input
                     type="number"
                     id="unStake"
                     name="unStake"
                     value={unStakeValue}
                     onChange={(e) => setUnStakeValue(e.target.value)}
-                    className=" inputBox w-[50px] h-[50px] rounded-full text-center justify-center items-center  mr-2 "
+                    className=" inputBox w-[100px] h-[30px] rounded-md text-center justify-center items-center m-2 ml-0"
                   />
                   {/* {console.log(stakeValue)} */}
                   <button
                     type="button"
-                    className="text-white paginationButton w-[100px] h-[100px]"
+                    className="text-white bg-[#7c0e33] hover:bg-[#ffffff] hover:text-[#7c0e33] hover:border-[#7c0e33] duration-300 shadow-xl w-[100px] h-[50px] m-2 ml-0 rounded-md"
                     onClick={() => handleUnstake(unStakeValue)}
                   >
                     UnStake

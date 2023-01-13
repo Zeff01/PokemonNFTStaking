@@ -5,8 +5,12 @@ import useWeb3Action from "./useWeb3Action";
 import web3 from "../web3/web3";
 import NFTStaker from "../web3/NFTStaker/NFTStaker";
 import ethNFTStaker from "../web3/NFTStaker/ethNFTStaker";
+import { useWeb3React } from "@web3-react/core";
 
 export default function useFunction(account) {
+  // const { active, library, account, chainId, connector, activate, deactivate } =
+  // useWeb3React();
+
   const [zcontractAddress, setzContractAddress] = useState("");
   const [zviewRewards, setzViewRewards] = useState();
   const [zgetStakedTokens, setzGetStakedTokens] = useState([]);
@@ -22,10 +26,9 @@ export default function useFunction(account) {
     transactionDone,
     transactionHash,
   } = useWeb3Action(web3, NFTStaker);
- 
+
   //CALL FUNCTIONS
   async function getContractAddress() {
-    
     setzContractAddress(await ethNFTStaker.getContractAddress());
   }
 
@@ -56,24 +59,27 @@ export default function useFunction(account) {
     return unStake;
   }
   async function claimRewards() {
-    await ethNFTStaker.claimRewards()
+    await ethNFTStaker.claimRewards();
   }
 
   async function clearRewards() {
-    await ethNFTStaker.clearRewards()
+    await ethNFTStaker.clearRewards();
   }
 
   async function viewRewards(account) {
-    let rewards =  await ethNFTStaker.viewRewards(account)
+    let rewards = await ethNFTStaker.viewRewards(account);
+    let numberConversion = rewards.toNumber();
 
-    if (rewards > 0) {
-      rewards = ethers.utils.formatEther(rewards);
+    rewards.toNumber();
+    if (numberConversion > 0) {
+      numberConversion = ethers.utils.formatEther(numberConversion);
     }
-    setzViewRewards(rewards);
+
+    setzViewRewards(numberConversion);
   }
 
   async function getStakedTokens(account) {
-    const stakedTokens = await ethNFTStaker.getStakedTokens(account)
+    const stakedTokens = await ethNFTStaker.getStakedTokens(account);
 
     setzGetStakedTokens(stakedTokens);
     return stakedTokens;

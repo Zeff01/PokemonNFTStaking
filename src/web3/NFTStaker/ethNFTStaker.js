@@ -5,11 +5,10 @@ import ABI from '../NFTStaker/NFTStaker.json'
 const eth = window.ethereum;
 const provider = new ethers.providers.Web3Provider(eth);
 
-export const CONTARCT_ADDRESS ="0x3E3a0dD0999715510E7BE3a03BB3Cf667d8DCE99";
+export const CONTRACT_ADDRESS ="0xc66eEBcC0B8C38C85E0B700a3B8c03B1FeF00689";
 
 
-const ethNFTStaker = new ethers.Contract(CONTARCT_ADDRESS, ABI.abi, provider.getSigner())
-
+const ethNFTStaker = new ethers.Contract(CONTRACT_ADDRESS, ABI.abi, provider.getSigner())
 
 
 export default ethNFTStaker;
