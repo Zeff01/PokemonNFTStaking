@@ -12,7 +12,7 @@ const Card = ({ id, name, image, type, stats = [], specie }) => {
           <div className="cardFront p-4">
             <div className="flex items-center justify-between">
               <h2 className={`idNumber `}>#&nbsp;{id}&nbsp;</h2>
-              <h1 className="ml-2 text-xl textStroke">
+              <h1 className="ml-2 text-xl ">
                 {name.charAt(0).toUpperCase() + name.slice(1)}
               </h1>
             </div>
@@ -20,7 +20,7 @@ const Card = ({ id, name, image, type, stats = [], specie }) => {
               src={image}
               className="w-[80px] h-[80px]  animate-[wiggle_1s_ease-in-out_infinite]"
             />
-            <h2 className="textStroke text-xl typeBackground">
+            <h2 className=" text-xl typeBackground">
               {type.toUpperCase()}
             </h2>
           </div>
