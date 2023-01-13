@@ -64,5 +64,5 @@
   "browser": {
     "crypto": false,
     "stream": false
-}
+  }
 }
