@@ -98,7 +98,7 @@ const NavBar = () => {
       </div>
 
       {nav && (
-        <ul className="flex md:hidden p-5 h-full w-full absolute z-50 bg-customize-redbackground top-[10%] flex-col border-t border-black">
+        <ul className="flex md:hidden p-5 h-full w-full absolute top-[11%] z-50 bg-customize-redbackground  flex-col border-t border-black">
           <li
             onClick={handleClick}
             className="font-bold text-xl p-8  focus:scale-75 border-b "
