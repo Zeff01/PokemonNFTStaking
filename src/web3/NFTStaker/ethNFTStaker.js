@@ -18,7 +18,6 @@ const ethNFTStaker = () => {
     // No window.ethereum found, no metamask.
     // redirect to link
     // window.location.href = `https://metamask.io/`;
-    alert("No metamask installed. Install metamask first.");
     return;
   }
 };
