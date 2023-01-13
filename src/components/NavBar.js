@@ -98,7 +98,15 @@ const NavBar = () => {
       </div>
 
       {nav && (
-        <ul className="flex md:hidden p-5 h-full w-full absolute top-[11%] z-50 bg-customize-redbackground  flex-col border-t border-black">
+        <div className="flex md:hidden p-5 h-full w-full absolute  bottom-0 z-50 bg-customize-redbackground  flex-col border-t border-black border">
+          <div onClick={handleClick} className="md:hidden z-10 px-4flex-end flex justify-end mt-2 p-0 pr-0 mr-0">
+            {!nav ? (
+              <FaBars className="w-[30px] h-[30px]" />
+            ) : (
+              <FaTimes className="w-[30px] h-[30px]" />
+            )}
+          </div>
+        <ul >
           <li
             onClick={handleClick}
             className="font-bold text-xl p-8  focus:scale-75 border-b "
@@ -132,6 +140,7 @@ const NavBar = () => {
             Contact us
           </li>
         </ul>
+        </div>
       )}
 
       {/* WALLET CONNECT DESKTOP VIEW*/}
