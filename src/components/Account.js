@@ -8,7 +8,7 @@ const Account = ({ fontColor }) => {
     useWeb3React();
   return (
     <div
-      className=" flex justify-end  flex-col md:flex-row bg-black"
+      className=" flex justify-end  flex-col md:flex-row "
       style={{ color: fontColor }}
     >
       <div className=" flex flex-col text-sm text-left] ">
