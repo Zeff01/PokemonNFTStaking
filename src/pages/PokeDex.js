@@ -81,10 +81,12 @@ const PokeDex = () => {
   }
 
   return (
-    <div className="w-full min-h-screen backgroundDawn bg-no-repeat bg-cover text-white p-6">
-      <header className="flex justify-between items-center mb-6">
-        <h1 className="text-4xl font-bold tracking-wide">PokeDex</h1>
-        <div className="flex items-center space-x-4">
+    <div className="w-full max-w-screen-lg mx-auto min-h-screen backgroundDawn bg-no-repeat bg-cover text-white p-4 sm:p-6">
+      <header className="flex flex-col sm:flex-row justify-between items-center mb-6 space-y-4 sm:space-y-0">
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-wide">
+          PokeDex
+        </h1>
+        <div className="flex items-center space-x-4 w-full sm:w-auto">
           <Search onSearch={setSearchQuery} />
           <Account fontColor="white" />
         </div>
@@ -98,7 +100,7 @@ const PokeDex = () => {
         </p>
       )}
 
-      <main className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      <main className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
         {filteredPokemons.map((pokemon) => (
           <Card
             key={pokemon.id}
@@ -112,10 +114,10 @@ const PokeDex = () => {
         ))}
       </main>
 
-      <footer className="flex justify-center mt-10 space-x-4">
+      <footer className="flex justify-center mt-8 space-x-4">
         {prevPage && (
           <button
-            className="bg-red-700 hover:bg-red-900 text-white font-bold py-3 px-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300"
+            className="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
             onClick={goPrevPage}
           >
             Prev Page
@@ -123,7 +125,7 @@ const PokeDex = () => {
         )}
         {nextPage && (
           <button
-            className="bg-red-700 hover:bg-red-900 text-white font-bold py-3 px-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300"
+            className="bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300"
             onClick={goNextPage}
           >
             Next Page
