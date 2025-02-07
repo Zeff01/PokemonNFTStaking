@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import { GiArchiveResearch } from "react-icons/gi";
 
-const Search = () => {
+const Search = ({ onSearch }) => {
   const [searchValue, setSearchValue] = useState("");
-  const [showSuggestion, setShowSuggestion] = useState(false);
+
+  const handleChange = (e) => {
+    const value = e.target.value.trim();
+    setSearchValue(value);
+    onSearch(value);
+  };
 
   return (
-    <div className="ml-5 w-full text-white flex items-center ">
-      <div className="rounded-full  flex border bg-[#ff1a1a] pl-2  flex-between " >
-        <GiArchiveResearch className="w-[40px] h-[40px] rounded-full cursor-pointer mr-1 "/>
+    <div className="w-full flex justify-center items-center">
+      <div className="flex items-center border bg-[#ff1a1a] rounded-full pl-3 pr-2 py-1 shadow-lg">
+        <GiArchiveResearch className="w-6 h-6 text-white cursor-pointer mr-2" />
         <input
           type="text"
-          className="rounded-full p-2 w-[250px]"
-          placeholder="Search Pokemon "
-          name="search-pokemon"
-          onChange={(e) => {
-            setSearchValue(e.target.value.trim());
-            setShowSuggestion(true);
-          }}
+          className="rounded-full p-2 w-[250px] text-black focus:outline-none"
+          placeholder="Search Pokemon"
+          value={searchValue}
+          onChange={handleChange}
         />
       </div>
     </div>

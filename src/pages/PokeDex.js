@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useWeb3React } from "@web3-react/core";
 
 import api from "../api/api";
@@ -14,136 +13,123 @@ const PokeDex = () => {
   const [currentPage, setCurrentPage] = useState(api.POKEMON);
   const [nextPage, setNextPage] = useState();
   const [prevPage, setPrevPage] = useState();
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const { active, account, library, chainId, connector, activate, deactivate } =
-    useWeb3React();
+  const { active, account } = useWeb3React();
 
   const getAllPokemons = async () => {
     setLoading(true);
-    const res = await axios
-      .get(currentPage)
-      .catch((err) => console.log("ERROR:", err));
-    const data = res.data;
-    setLoading(false);
-    setNextPage(data.next);
-    setPrevPage(data.previous);
-
-    createPokemonObject(data.results);
-    getPokemonSpecies(data.results);
+    try {
+      const res = await axios.get(currentPage);
+      const data = res.data;
+      setNextPage(data.next);
+      setPrevPage(data.previous);
+      createPokemonObject(data.results);
+      getPokemonSpecies(data.results);
+    } catch (err) {
+      console.error("ERROR:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const createPokemonObject = async (result) => {
-    var pokemonArr = [];
-    await Promise.all(
-      result.map((pokemon) => {
-        return axios.get(`${api.POKEMON + pokemon.name}`).then((result) => {
-          pokemonArr.push(result.data);
-        });
+    const pokemonArr = await Promise.all(
+      result.map(async (pokemon) => {
+        const res = await axios.get(`${api.POKEMON}${pokemon.name}`);
+        return res.data;
       })
     );
-    pokemonArr.sort((a, b) => (a.id > b.id ? 1 : b.id > a.id ? -1 : 0));
-
-    setAllPokemons(pokemonArr);
+    setAllPokemons(pokemonArr.sort((a, b) => a.id - b.id));
   };
 
   const getPokemonSpecies = async (result) => {
-    var specieArr = [];
-    const promise = await Promise.all(
+    const specieArr = await Promise.all(
       result.map(async (pokemon) => {
-        return new Promise(async (res, rej) => {
-          await fetch(api.POKEMON_SPECIES + pokemon.name)
-            .then((item) => {
-              return item.json();
-            })
-            .then((data) => {
-              res(data);
-            });
-        });
+        const res = await fetch(`${api.POKEMON_SPECIES}${pokemon.name}`);
+        const data = await res.json();
+        return {
+          id: data.id,
+          name: data.name,
+          description:
+            data.flavor_text_entries?.[1]?.flavor_text ||
+            "No description available.",
+        };
       })
     );
-
-    promise.map((data) => {
-      specieArr.push({
-        id: data.id,
-        name: data.name,
-        description: data.flavor_text_entries[1].flavor_text,
-      });
-    });
-
-    specieArr.sort((a, b) => (a.id > b.id ? 1 : b.id > a.id ? -1 : 0));
-    setPokemonSpecie(specieArr);
+    setPokemonSpecie(specieArr.sort((a, b) => a.id - b.id));
   };
 
   useEffect(() => {
     getAllPokemons();
   }, [currentPage]);
 
-  function goNextPage() {
-    setCurrentPage(nextPage);
-  }
+  const goNextPage = () => setCurrentPage(nextPage);
+  const goPrevPage = () => setCurrentPage(prevPage);
 
-  function goPrevPage() {
-    setCurrentPage(prevPage);
-  }
+  const filteredPokemons = allPokemons.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-  if (loading) return "Loading...";
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-red-800 to-black">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-white"></div>
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full h-full backgroundDawn bg-no-repeat bg-cover ">
-    <div  className="flex md:hidden p-2">
-        <Account fontColor={"white"} />
+    <div className="w-full min-h-screen backgroundDawn bg-no-repeat bg-cover text-white p-6">
+      <header className="flex justify-between items-center mb-6">
+        <h1 className="text-4xl font-bold tracking-wide">PokeDex</h1>
+        <div className="flex items-center space-x-4">
+          <Search onSearch={setSearchQuery} />
+          <Account fontColor="white" />
         </div>
-      <div className="flex p-4">
-        <Search  />
-        <div  className="hidden md:flex">
-        <Account fontColor={"white"} />
-        </div>
-   
-      </div>
-      <div className="grid sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-5 gap-2 font-bold ">
-        {allPokemons.map((pokemon, num) => {
-          return (
-            <div key={num}>
-              <Card
-                specie={
-                  pokemonSpecie.length &&
-                  pokemonSpecie.find((item) => item.name === pokemon.name)
-                }
-                id={pokemon.id}
-                name={pokemon.name}
-                image={pokemon.sprites.other.dream_world.front_default}
-                type={pokemon.types[0].type.name}
-                stats={pokemon.stats}
-              />
-            </div>
-          );
-        })}
-      </div>
-      <div className="flex justify-center items-center mt-10 ">
-        <div className="flex w-60 justify-between ">
-          {prevPage ? (
-            <button
-              type="button"
-              className="text-white paginationButton"
-              onClick={goPrevPage}
-            >
-              Prev Page
-            </button>
-          ) : (
-            <button type="button" className="scale-0" onClick={goPrevPage}>
-              Prev Page
-            </button>
-          )}
+      </header>
+
+      {active ? (
+        <p className="text-center text-lg mb-4">Welcome, {account}</p>
+      ) : (
+        <p className="text-center text-lg mb-4">
+          Please connect your wallet to explore PokeDex features.
+        </p>
+      )}
+
+      <main className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+        {filteredPokemons.map((pokemon) => (
+          <Card
+            key={pokemon.id}
+            specie={pokemonSpecie.find((item) => item.name === pokemon.name)}
+            id={pokemon.id}
+            name={pokemon.name}
+            image={pokemon.sprites.other.dream_world.front_default}
+            type={pokemon.types[0].type.name}
+            stats={pokemon.stats}
+          />
+        ))}
+      </main>
+
+      <footer className="flex justify-center mt-10 space-x-4">
+        {prevPage && (
           <button
-            type="button"
-            className="text-white paginationButton justify-self-end"
+            className="bg-red-700 hover:bg-red-900 text-white font-bold py-3 px-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300"
+            onClick={goPrevPage}
+          >
+            Prev Page
+          </button>
+        )}
+        {nextPage && (
+          <button
+            className="bg-red-700 hover:bg-red-900 text-white font-bold py-3 px-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300"
             onClick={goNextPage}
           >
             Next Page
           </button>
-        </div>
-      </div>
+        )}
+      </footer>
     </div>
   );
 };

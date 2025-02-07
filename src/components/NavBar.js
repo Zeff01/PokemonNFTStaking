@@ -45,24 +45,28 @@ const NavBar = () => {
   return (
     <div className="w-full flex flex-row justify-between text-white bg-customize-redbackground items-center">
       <div>
-        <div className="  hover:border-[#e9b13a] border-4 border-customize-redbackground duration-300 hover:animate-spin cursor-pointer rounded-full  p-2">
+        <div className="hover:border-[#e9b13a] border-4 border-customize-redbackground duration-300 hover:animate-spin cursor-pointer rounded-full p-2">
           <img
             src={require("../assets/pokeballcircle.png")}
-            className="w-[70px] h-[70px]  "
+            className="w-[70px] h-[70px]"
           />
         </div>
       </div>
 
       {/* MENU DESKTOP VIEW */}
       <ul className="hidden md:flex p-5 h-full">
-        <li className="font-bold text-lg  border-2 rounded-full mr-2 hover:bg-[#f2f2f2] hover:text-customize-red background hover:border-black py-1 duration-300">
+        <li className="font-bold text-lg border-2 rounded-full mr-2 hover:bg-[#f2f2f2] hover:text-customize-red background hover:border-black py-1 duration-300">
           <Link to="/">PokeDex</Link>
         </li>
-        <li className="font-bold hover:border-b-2  mr-2">
+        <li className="font-bold hover:border-b-2 mr-2">
           <Link to="/staking">Stake</Link>
         </li>
-        <li className="font-bold hover:border-b-2  mr-2">Inventory</li>
-        <li className="font-bold hover:border-b-2 ">Contact us</li>
+        <li className="font-bold hover:border-b-2 mr-2">
+          <Link to="/inventory">Inventory</Link>
+        </li>
+        <li className="font-bold hover:border-b-2">
+          <Link to="/contact">Contact Us</Link>
+        </li>
       </ul>
 
       {/* WALLET CONNECT MOBILE VIEW */}
@@ -79,7 +83,7 @@ const NavBar = () => {
             ) : (
               <button
                 onClick={disconnect}
-                className="w-[130px] h-[50px]connectButton border-2 rounded-md p-2 hover:bg-[rgb(187, 13, 83)] transition-all"
+                className="w-[130px] h-[50px] connectButton border-2 rounded-md p-2 hover:bg-[rgb(187, 13, 83)] transition-all"
               >
                 Disconnect
               </button>
@@ -88,8 +92,8 @@ const NavBar = () => {
         </div>
       </div>
 
-      {/* //HAMBURGER  MOBILE VIEW*/}
-      <div onClick={handleClick} className="md:hidden z-10 px-4 ">
+      {/* HAMBURGER MOBILE VIEW */}
+      <div onClick={handleClick} className="md:hidden z-10 px-4">
         {!nav ? (
           <FaBars className="w-[30px] h-[30px]" />
         ) : (
@@ -98,10 +102,10 @@ const NavBar = () => {
       </div>
 
       {nav && (
-        <div className="flex md:hidden p-5 top-0 w-full absolute bottom-0 z-50  flex-col border-t border-black bg-customize-redbackground  h-[550px]">
+        <div className="flex md:hidden p-5 top-0 w-full absolute bottom-0 z-50 flex-col border-t border-black bg-customize-redbackground h-[550px]">
           <div
             onClick={handleClick}
-            className="md:hidden z-10 px-4 flex-end flex justify-end mt-2 p-0 pr-0 mr-0 "
+            className="md:hidden z-10 px-4 flex justify-end mt-2"
           >
             {!nav ? (
               <FaBars className="w-[30px] h-[30px]" />
@@ -112,41 +116,41 @@ const NavBar = () => {
           <ul>
             <li
               onClick={handleClick}
-              className="font-bold text-xl p-8  focus:scale-75 border-b "
+              className="font-bold text-xl p-8 focus:scale-75 border-b"
             >
               <Link to="/" className="flex items-center">
-                <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
-                PokeDex
+                <CgPokemon className="w-12 h-12 mr-4 text-red-50" /> PokeDex
               </Link>
             </li>
             <li
               onClick={handleClick}
-              className="font-bold text-xl p-8  focus:scale-75 border-b "
+              className="font-bold text-xl p-8 focus:scale-75 border-b"
             >
               <Link to="/staking" className="flex items-center">
-                <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
-                Stake
+                <CgPokemon className="w-12 h-12 mr-4 text-red-50" /> Stake
               </Link>
             </li>
             <li
               onClick={handleClick}
-              className="font-bold text-xl p-8  focus:scale-75 flex items-center border-b"
+              className="font-bold text-xl p-8 focus:scale-75 border-b"
             >
-              <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
-              Inventory
+              <Link to="/inventory" className="flex items-center">
+                <CgPokemon className="w-12 h-12 mr-4 text-red-50" /> Inventory
+              </Link>
             </li>
             <li
               onClick={handleClick}
-              className="font-bold text-xl p-8  focus:scale-75 flex items-center border-b"
+              className="font-bold text-xl p-8 focus:scale-75 border-b"
             >
-              <CgPokemon className="w-12 h-12 mr-4 text-red-50" />
-              Contact us
+              <Link to="/contact" className="flex items-center">
+                <CgPokemon className="w-12 h-12 mr-4 text-red-50" /> Contact Us
+              </Link>
             </li>
           </ul>
         </div>
       )}
 
-      {/* WALLET CONNECT DESKTOP VIEW*/}
+      {/* WALLET CONNECT DESKTOP VIEW */}
       <div className="hidden md:flex p-1">
         <div className="flex flex-col">
           <div className="flex">
@@ -160,7 +164,7 @@ const NavBar = () => {
             ) : (
               <button
                 onClick={disconnect}
-                className="w-[130px] h-[50px]connectButton border-2 rounded-md p-2 hover:bg-[rgb(187, 13, 83)] transition-all"
+                className="w-[130px] h-[50px] connectButton border-2 rounded-md p-2 hover:bg-[rgb(187, 13, 83)] transition-all"
               >
                 Disconnect
               </button>

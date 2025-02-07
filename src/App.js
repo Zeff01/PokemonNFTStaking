@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import PokeDex from "./pages/PokeDex.js";
 import Staking from "./pages/Staking";
+import Inventory from "./pages/Inventory.js";
+import Contact from "./pages/Contact.js";
 
 function App() {
   function getLibrary(provider) {
@@ -21,6 +23,8 @@ function App() {
           <Routes>
             <Route path="/" element={<PokeDex />} />
             <Route path="/staking" element={<Staking />} />
+            <Route path="/inventory" element={<Inventory />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>
       </BrowserRouter>

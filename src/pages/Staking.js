@@ -191,7 +191,7 @@ const Staking = () => {
   };
 
   return (
-    <div className="p-4 h-full w-full stakingBackground bg-no-repeat bg-cover ">
+    <div className="p-4 h-full w-full stakingBackground bg-no-repeat bg-cover min-h-screen">
       <ToastContainer
         position="top-right"
         autoClose={5000}
